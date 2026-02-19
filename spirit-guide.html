@@ -1,0 +1,2960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Liquor Guide - Gimmicks vs True Spirits</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(45, 45, 45, 0.85) 100%),
+                        url('SpiritGuide.jpg') center/cover fixed;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: none;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-btn {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-btn.gimmick {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+            color: white;
+        }
+        
+        .nav-btn.true-whiskey {
+            background: linear-gradient(135deg, #006400 0%, #228B22 100%);
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page-header {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .gimmick-header {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+        }
+        
+        .true-whiskey-header {
+            background: linear-gradient(135deg, #006400 0%, #228B22 100%);
+        }
+        
+        .page-header h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            font-size: 1.1em;
+            font-style: italic;
+        }
+        
+        .whiskey-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .whiskey-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .whiskey-card:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .gimmick-page .whiskey-card {
+            border-left-color: #DC143C;
+        }
+        
+        .true-whiskey-page .whiskey-card {
+            border-left-color: #228B22;
+        }
+        
+        .whiskey-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+        
+        .whiskey-type {
+            display: inline-block;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .whiskey-card p {
+            margin-top: 10px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .price-range {
+            color: #90EE90;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            font-style: italic;
+        }
+
+        /* Home Page Styles */
+        .home-page {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-title {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-align: center;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .home-subtitle {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .spirit-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .spirit-card {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.3) 0%, rgba(210, 105, 30, 0.3) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spirit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .spirit-card:hover::before {
+            left: 100%;
+        }
+
+        .spirit-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: #FFD700;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .spirit-card h2 {
+            font-size: 2em;
+            margin-bottom: 5px;
+            color: #FFD700;
+        }
+
+        .spirit-card p {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .back-home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: none;
+        }
+
+        .back-home-btn.show {
+            display: block;
+        }
+
+        .back-home-btn:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Tablet styles */
+        @media (max-width: 1024px) {
+            .spirit-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .whiskey-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .nav-btn {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+        }
+
+        /* Mobile styles */
+        @media (max-width: 600px) {
+            body {
+                background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
+                            url('SpiritGuide.jpg') center/cover fixed;
+            }
+
+            .spirit-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .whiskey-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .home-title {
+                font-size: 1.8em;
+                margin-bottom: 10px;
+            }
+
+            .home-subtitle {
+                font-size: 1em;
+                margin-bottom: 25px;
+            }
+
+            .spirit-card {
+                padding: 25px 15px;
+            }
+
+            .spirit-card h2 {
+                font-size: 1.5em;
+            }
+
+            .spirit-card p {
+                font-size: 0.85em;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            .nav-btn {
+                padding: 12px 20px;
+                font-size: 0.9em;
+                width: 100%;
+            }
+
+            .page-header h2 {
+                font-size: 1.5em;
+            }
+
+            .page-header p {
+                font-size: 0.9em;
+            }
+
+            .whiskey-card {
+                padding: 15px;
+            }
+
+            .whiskey-card h3 {
+                font-size: 1.1em;
+            }
+
+            .whiskey-type {
+                font-size: 0.75em;
+                padding: 4px 8px;
+            }
+
+            .price-range {
+                font-size: 0.9em;
+            }
+
+            .whiskey-card p {
+                font-size: 0.85em;
+            }
+
+            .back-home-btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+                top: 10px;
+                left: 10px;
+            }
+
+            footer {
+                padding: 20px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-home-btn" onclick="showHome()">← Back to Home</button>
+
+        <!-- HOME PAGE -->
+        <div id="home" class="page home-page active">
+            <div class="home-content">
+                <h2 class="home-title">Choose Your Spirit</h2>
+                <p class="home-subtitle">Discover which bottles are worth your money</p>
+
+                <div class="spirit-grid">
+                <div class="spirit-card" onclick="showSpirit('rum')">
+                    <h2>🍹 Rum</h2>
+                    <p>Caribbean & Beyond</p>
+                </div>
+
+                <div class="spirit-card" onclick="showSpirit('gin')">
+                    <h2>🌿 Gin</h2>
+                    <p>Botanical Spirits</p>
+                </div>
+
+                <div class="spirit-card" onclick="showSpirit('whiskey')">
+                    <h2>🥃 Whiskey</h2>
+                    <p>Bourbon, Scotch & More</p>
+                </div>
+
+                <div class="spirit-card" onclick="showSpirit('vodka')">
+                    <h2>❄️ Vodka</h2>
+                    <p>Clear Spirits</p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- WHISKEY SECTION -->
+        <div id="whiskey-section" class="page" style="display: none;">
+            <nav>
+                <button class="nav-btn gimmick" onclick="showPage('whiskey-gimmick')">💸 Gimmick Whiskeys</button>
+                <button class="nav-btn true-whiskey" onclick="showPage('whiskey-true')">⭐ True Whiskeys</button>
+            </nav>
+
+        <!-- GIMMICK WHISKEYS PAGE -->
+        <div id="whiskey-gimmick" class="page gimmick-page">
+            <div class="page-header gimmick-header">
+                <h2>💸 Gimmick Whiskeys - Overpriced & Overhyped</h2>
+                <p>These whiskeys rely on marketing, fancy bottles, and brand recognition rather than quality</p>
+            </div>
+
+            <div class="whiskey-grid">
+                <div class="whiskey-card">
+                    <h3>Johnnie Walker Blue Label</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$200-250</p>
+                    <p>Overpriced blend that doesn't justify its premium price tag. You're paying for the blue bottle and marketing.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>The Macallan 18</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$300-400</p>
+                    <p>Massively overpriced due to brand hype. The quality doesn't match the astronomical price point.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Dalmore 18</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$200-250</p>
+                    <p>Fancy stag logo and presentation, but the whiskey inside doesn't justify the premium pricing.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenlivet 18</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$120-150</p>
+                    <p>Decent whiskey but vastly overpriced for what you get. Better options exist at half the price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Chivas Regal 18</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Smooth but boring blend that relies on brand recognition rather than exceptional quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Fireball Cinnamon Whisky</h3>
+                    <span class="whiskey-type">Flavored Whiskey</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Candy-flavored liqueur masquerading as whiskey. More sugar than spirit.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Crown Royal</h3>
+                    <span class="whiskey-type">Canadian Whisky</span>
+                    <p class="price-range">$25-35</p>
+                    <p>Purple bag marketing gimmick. Bland, uninspiring whisky that's all presentation.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Johnnie Walker Black Label</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Overrated blend that's become a corporate gift staple. Mediocre quality for the price.</p>
+                </div>
+
+
+
+                <div class="whiskey-card">
+                    <h3>Dewar's White Label</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Bottom-shelf blend with harsh edges. Only good for mixing, and even then there are better options.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Jack Daniel's Single Barrel</h3>
+                    <span class="whiskey-type">Tennessee Whiskey</span>
+                    <p class="price-range">$50-65</p>
+                    <p>Overpriced version of an already mediocre whiskey. The "single barrel" label is just marketing.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Jameson Black Barrel</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Trying too hard to be premium. Regular Jameson is already overrated, this is worse value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Balvenie Caribbean Cask</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$70-90</p>
+                    <p>Gimmicky rum cask finish that masks mediocre whisky. All style, no substance.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenmorangie Nectar D'Or</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$60-80</p>
+                    <p>Fancy French name and wine cask finish can't hide the overpricing. Marketing over merit.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Hibiki Japanese Harmony</h3>
+                    <span class="whiskey-type">Japanese Whisky</span>
+                    <p class="price-range">$90-150</p>
+                    <p>Beautiful bottle, inflated price due to Japanese whisky hype. Not worth the premium.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Yamazaki 12</h3>
+                    <span class="whiskey-type">Japanese Whisky</span>
+                    <p class="price-range">$150-250</p>
+                    <p>Victim of the Japanese whisky bubble. Good whisky, but absurdly overpriced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Maker's Mark 46</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Oak stave gimmick doesn't justify the price increase over regular Maker's.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Woodford Reserve Double Oaked</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Over-oaked and overpriced. The regular Woodford is already overrated.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Basil Hayden's</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Watered down to 80 proof and overpriced. Fancy bottle, disappointing contents.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Angel's Envy</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Port cask finish is a gimmick to mask young whiskey. All marketing hype.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Blanton's Single Barrel</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$150-300 (secondary)</p>
+                    <p>Collectible bottle topper created artificial scarcity. Good bourbon, but not worth the inflated prices.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Pappy Van Winkle 15</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$1000+ (secondary)</p>
+                    <p>The ultimate hype whiskey. Good, but the cult following has made it ridiculously overpriced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Macallan Rare Cask</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$250-300</p>
+                    <p>"Rare" is just marketing speak. Overpriced Macallan with fancy packaging.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Highland Park 18</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$150-200</p>
+                    <p>Viking marketing can't justify the premium. Better Orkney malts exist for less.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Oban 18</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$150-180</p>
+                    <p>Diageo's premium pricing on a mediocre coastal malt. The 14 is overpriced too.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Talisker 18</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$120-150</p>
+                    <p>The 10-year is better and a fraction of the price. Age doesn't always mean better.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Lagavulin 16</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Parks & Rec made this overpriced. Good whisky, but you're paying the Ron Swanson tax.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenlivet Founder's Reserve</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$35-45</p>
+                    <p>No age statement whisky at premium prices. "Founder's Reserve" means nothing.</p>
+                </div>
+
+
+
+                <div class="whiskey-card">
+                    <h3>Monkey Shoulder</h3>
+                    <span class="whiskey-type">Blended Malt Scotch</span>
+                    <p class="price-range">$35-40</p>
+                    <p>Hipster marketing and quirky bottle. Decent blend, but overpriced for what it is.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Compass Box Peat Monster</h3>
+                    <span class="whiskey-type">Blended Malt Scotch</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Trendy branding and NAS whisky at premium prices. Marketing over substance.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Nikka From The Barrel</h3>
+                    <span class="whiskey-type">Japanese Whisky</span>
+                    <p class="price-range">$70-90</p>
+                    <p>Cute bottle, inflated price. Japanese whisky hype has made this overpriced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Suntory Toki</h3>
+                    <span class="whiskey-type">Japanese Whisky</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Designed for highballs, priced like premium whisky. You're paying for the Japanese label.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bulleit Bourbon</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Frontier bottle design and marketing. It's MGP sourced whiskey with a markup.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bulleit 10 Year</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Same MGP juice with an age statement and double the price. Not worth it.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Whistlepig 10</h3>
+                    <span class="whiskey-type">Rye Whiskey</span>
+                    <p class="price-range">$80-90</p>
+                    <p>Canadian sourced rye with Vermont marketing. Overpriced for what you get.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>High West Double Rye</h3>
+                    <span class="whiskey-type">Rye Whiskey</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Blending sourced whiskeys and charging premium. Cute labels, mediocre value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Templeton Rye</h3>
+                    <span class="whiskey-type">Rye Whiskey</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Prohibition-era story is fiction. MGP sourced with inflated pricing.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Crown Royal XR</h3>
+                    <span class="whiskey-type">Canadian Whisky</span>
+                    <p class="price-range">$150-200</p>
+                    <p>Extra fancy purple bag doesn't make it worth $150. Still bland Canadian whisky.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Crown Royal Reserve</h3>
+                    <span class="whiskey-type">Canadian Whisky</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Slightly better Crown Royal at twice the price. Not worth the premium.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Canadian Club 20 Year</h3>
+                    <span class="whiskey-type">Canadian Whisky</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Age doesn't fix bland whisky. Still tastes like Canadian Club.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Seagram's VO</h3>
+                    <span class="whiskey-type">Canadian Whisky</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Bottom shelf Canadian that's harsh and unpleasant. Avoid.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Jim Beam Black</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Extra aging doesn't save Jim Beam. Still has that harsh Beam funk.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Jim Beam Devil's Cut</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Marketing gimmick about barrel extraction. Tastes like regular Beam with more oak.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Wild Turkey 81</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Watered down version of an already mediocre bourbon. Get the 101 if you must.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Evan Williams Black</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Bottom shelf bourbon that's harsh and one-dimensional. Only for mixing.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Old Forester Signature</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$25-30</p>
+                    <p>The entry-level Old Forester is forgettable. Their premium lines are better but overpriced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Four Roses Yellow Label</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Export quality bourbon sold domestically. Thin and unremarkable.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Elijah Craig Small Batch</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Lost its age statement, kept the price. Not the value it once was.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Knob Creek Smoked Maple</h3>
+                    <span class="whiskey-type">Flavored Bourbon</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Flavored whiskey gimmick from a decent brand. Stick to regular Knob Creek.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Jack Daniel's Tennessee Honey</h3>
+                    <span class="whiskey-type">Flavored Whiskey</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Liqueur masquerading as whiskey. For people who don't actually like whiskey.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Jack Daniel's Tennessee Fire</h3>
+                    <span class="whiskey-type">Flavored Whiskey</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Cinnamon candy flavoring. Fireball competitor that's equally terrible.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Southern Comfort</h3>
+                    <span class="whiskey-type">Flavored Liqueur</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Not even whiskey. Fruit-flavored liqueur that tricks people.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Drambuie</h3>
+                    <span class="whiskey-type">Scotch Liqueur</span>
+                    <p class="price-range">$35-40</p>
+                    <p>Honey and herb liqueur, not whisky. Overpriced for what it is.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Cutty Sark</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Harsh, cheap blend that's only good for forgetting. Avoid.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>J&B Rare</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$20-25</p>
+                    <p>"Rare" is ironic - it's mass-produced and mediocre. Bottom shelf quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Grant's Family Reserve</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Cheap blend with harsh edges. Only for mixing, and even then it's questionable.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Famous Grouse</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Famous for being cheap, not good. Rough and unrefined.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Buchanan's 12</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Overpriced blend popular in certain markets. Marketing over quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Chivas Regal 12</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$35-40</p>
+                    <p>Smooth but boring. You're paying for the name, not the whisky.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Johnnie Walker Gold Label</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Trying to fill the gap between Black and Blue. Unnecessary and overpriced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Johnnie Walker Platinum</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Another gap-filler in the JW lineup. More marketing than substance.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Johnnie Walker Green Label</h3>
+                    <span class="whiskey-type">Blended Malt Scotch</span>
+                    <p class="price-range">$60-70</p>
+                    <p>Decent blend, but overpriced. Better single malts exist at this price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenmorangie Original</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Thin and overpriced for a 10-year. Marketing budget exceeds quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenmorangie Quinta Ruban</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$50-65</p>
+                    <p>Port cask finish can't save mediocre base spirit. Gimmicky.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenmorangie Lasanta</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$50-65</p>
+                    <p>Sherry cask finish on thin whisky. All finish, no substance.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Aberlour 12 Double Cask</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Decent whisky, but overpriced for what it delivers. Better Speysides exist.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Craigellachie 13</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Trendy bottle and odd age statement. Overpriced for the quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Ardbeg Uigeadail</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Good whisky, but the Ardbeg cult has inflated prices beyond reason.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Ardbeg Corryvreckan</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$90-110</p>
+                    <p>Another overhyped Ardbeg. You're paying for the name and fancy bottle.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Laphroaig Quarter Cask</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$55-70</p>
+                    <p>Gimmicky small cask marketing. The 10 is better value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bowmore 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Inconsistent and overpriced. Better Islay malts available.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Caol Ila 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$65-80</p>
+                    <p>Decent Islay, but Diageo pricing makes it poor value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bruichladdich Classic Laddie</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Trendy branding and NAS whisky at premium prices. Overrated.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bruichladdich Port Charlotte</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$70-85</p>
+                    <p>Heavily peated and heavily priced. Not worth the premium.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Redbreast 12</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$60-70</p>
+                    <p>Good Irish whiskey, but overpriced due to hype. Better values exist.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Tullamore Dew</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Bland and forgettable. Only notable for being Irish.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bushmills Original</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Thin and unremarkable. The "oldest distillery" claim doesn't make it good.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Proper No. Twelve</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Conor McGregor's celebrity whiskey. All marketing, mediocre whiskey.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Teeling Small Batch</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Rum cask finish gimmick. Overpriced for young Irish whiskey.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Writers Tears</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Cute name, overpriced whiskey. Marketing over substance.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Gentleman Jack</h3>
+                    <span class="whiskey-type">Tennessee Whiskey</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Double charcoal filtered Jack Daniel's. Still tastes like Jack.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Jack Daniel's Sinatra Select</h3>
+                    <span class="whiskey-type">Tennessee Whiskey</span>
+                    <p class="price-range">$150-180</p>
+                    <p>Celebrity marketing at its worst. Absurdly overpriced Jack Daniel's.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>George Dickel No. 12</h3>
+                    <span class="whiskey-type">Tennessee Whiskey</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Vitamin-like flavor profile. Odd and off-putting.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Uncle Nearest 1856</h3>
+                    <span class="whiskey-type">Tennessee Whiskey</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Good story, overpriced whiskey. You're paying for the narrative.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Michter's US*1 Bourbon</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$45-55</p>
+                    <p>NAS bourbon at premium prices. Overrated and overpriced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Jefferson's Ocean</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Aged at sea gimmick. Expensive marketing stunt, mediocre bourbon.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Belle Meade Bourbon</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$40-50</p>
+                    <p>MGP sourced with fancy label. Overpriced for sourced whiskey.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>1792 Small Batch</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Decent bourbon, but "small batch" is meaningless marketing.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRUE WHISKEYS PAGE -->
+        <div id="whiskey-true" class="page true-whiskey-page">
+            <div class="page-header true-whiskey-header">
+                <h2>⭐ True Whiskeys - Worth Every Penny</h2>
+                <p>These whiskeys deliver exceptional quality, value, and authentic craftsmanship</p>
+            </div>
+
+            <div class="whiskey-grid">
+                <div class="whiskey-card">
+                    <h3>Buffalo Trace</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Classic Kentucky bourbon. Smooth, balanced, and excellent value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Knob Creek 9 Year</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Excellent value bourbon with full flavor and proper aging. A benchmark for quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Rowan's Creek</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Small batch bourbon from Kentucky Bourbon Distillers. Rich, complex, and underrated.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Connemara Peated</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Unique peated Irish whiskey with character. Excellent value for peat lovers.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenfiddich 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Classic Speyside single malt. Approachable, smooth, and reliable.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenfiddich 15 Solera</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$55-70</p>
+                    <p>Unique solera maturation. Rich and complex Speyside whisky.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenfiddich 18</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$90-120</p>
+                    <p>Well-aged Speyside with depth. Premium expression worth the price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Laphroaig 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Iconic Islay malt with medicinal peat. Polarizing but authentic and fairly priced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Ardbeg 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Powerful Islay peat bomb. Complex and worth the price before the hype inflated it.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Wild Turkey 101</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$25-30</p>
+                    <p>High proof, full flavor, low price. One of the best value bourbons available.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Old Grand-Dad 114</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$25-30</p>
+                    <p>High-rye bourbon at barrel proof. Incredible value and flavor.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Evan Williams Single Barrel</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Vintage-dated single barrel at a bargain price. Consistently good.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Henry McKenna 10 Year BiB</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Bottled-in-bond single barrel with age statement. Exceptional value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Old Forester 1920 Prohibition Style</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$55-65</p>
+                    <p>High proof, well-aged bourbon with character. Worth the premium.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Old Forester 1897 BiB</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Bottled-in-bond excellence. Classic bourbon done right.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Russell's Reserve 10 Year</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Wild Turkey's premium line delivers. Age-stated quality at fair price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Russell's Reserve Single Barrel</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Barrel proof single barrel bourbon. Powerful and worth it.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Four Roses Single Barrel</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Elegant, floral bourbon with complexity. Great value single barrel.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Four Roses Small Batch Select</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$55-65</p>
+                    <p>Non-chill filtered, higher proof. Quality upgrade worth the price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Elijah Craig Barrel Proof</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$60-70</p>
+                    <p>Uncut, unfiltered bourbon at 12 years. Exceptional value for barrel proof.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Stagg Jr.</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$55-65 (MSRP)</p>
+                    <p>Barrel proof powerhouse. When found at retail, it's a steal.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Old Ezra 7 Year Barrel Strength</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Age-stated barrel proof bourbon at a great price. Underrated gem.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Pikesville Rye</h3>
+                    <span class="whiskey-type">Rye Whiskey</span>
+                    <p class="price-range">$50-60</p>
+                    <p>6-year rye at 110 proof. Best value in premium rye whiskey.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Rittenhouse Rye BiB</h3>
+                    <span class="whiskey-type">Rye Whiskey</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Bottled-in-bond rye at a bargain. Perfect for cocktails or sipping.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Old Overholt Bonded</h3>
+                    <span class="whiskey-type">Rye Whiskey</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Classic rye recipe at bottled-in-bond standards. Excellent value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Sazerac Rye</h3>
+                    <span class="whiskey-type">Rye Whiskey</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Buffalo Trace rye mashbill. Great for cocktails and sipping.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>New Riff Single Barrel Rye</h3>
+                    <span class="whiskey-type">Rye Whiskey</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Bottled-in-bond, non-chill filtered. New distillery doing it right.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Jack Daniel's Single Barrel Barrel Proof</h3>
+                    <span class="whiskey-type">Tennessee Whiskey</span>
+                    <p class="price-range">$65-75</p>
+                    <p>Finally, Jack Daniel's worth the money. Uncut and impressive.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>George Dickel Bottled in Bond</h3>
+                    <span class="whiskey-type">Tennessee Whiskey</span>
+                    <p class="price-range">$35-40</p>
+                    <p>13-year age statement at BiB standards. Incredible value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Mellow Corn BiB</h3>
+                    <span class="whiskey-type">Corn Whiskey</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Cult favorite corn whiskey. Unique, cheap, and surprisingly good.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>J.W. Dant BiB</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Bottled-in-bond at bottom shelf prices. Hidden gem.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Very Old Barton BiB</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$15-20</p>
+                    <p>6-year bottled-in-bond for under $20. Unbeatable value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Heaven Hill 7 Year BiB</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Age-stated Heaven Hill at BiB proof. Classic bourbon done right.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Booker's Bourbon</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$70-90</p>
+                    <p>Uncut, unfiltered, age-stated. Premium bourbon that delivers.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Baker's 7 Year</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$55-65</p>
+                    <p>Single barrel, age-stated Beam product. Underrated quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Rare Breed Bourbon</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Barrel proof Wild Turkey blend. Excellent value for the proof.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Rare Breed Rye</h3>
+                    <span class="whiskey-type">Rye Whiskey</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Barrel proof rye from Wild Turkey. Bold and worth it.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Old Forester Rye</h3>
+                    <span class="whiskey-type">Rye Whiskey</span>
+                    <p class="price-range">$25-30</p>
+                    <p>100 proof rye with unique mashbill. Great value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Woodford Reserve Rye</h3>
+                    <span class="whiskey-type">Rye Whiskey</span>
+                    <p class="price-range">$35-40</p>
+                    <p>One of the few Woodford products worth buying. Solid rye.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Clyde May's Straight Bourbon</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Alabama bourbon with character. Underrated and well-made.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Wilderness Trail Single Barrel</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Bottled-in-bond from new Kentucky distillery. Quality craft bourbon.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>New Riff Single Barrel Bourbon</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Bottled-in-bond, 4-year minimum. New distillery with old standards.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Barrell Bourbon Batch Series</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$80-90</p>
+                    <p>Cask strength blends done right. Expensive but worth it.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Joseph Magnus Bourbon</h3>
+                    <span class="whiskey-type">Bourbon</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Well-blended sourced bourbon with finishing. Premium quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Springbank 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Campbeltown classic. Complex, unique, and fairly priced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Springbank 12 Cask Strength</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$90-110</p>
+                    <p>Uncut Springbank excellence. Worth every penny.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Kilkerran 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$55-70</p>
+                    <p>Campbeltown's newest distillery. Traditional quality at fair price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bunnahabhain 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$55-70</p>
+                    <p>Unpeated Islay malt. Sherry influence and great value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Ledaig 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$50-65</p>
+                    <p>Peated Tobermory. Coastal peat at excellent price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Benromach 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Traditional Speyside with light peat. Underrated quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Deanston 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Unpeated Highland malt. Non-chill filtered value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Clynelish 14</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$65-80</p>
+                    <p>Waxy, coastal Highland malt. Unique and worth it.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Craigellachie 17</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$100-120</p>
+                    <p>Sulfury Speyside with character. Age-stated quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glendronach 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$55-70</p>
+                    <p>Sherry bomb at reasonable price. Classic Highland malt.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glendronach 15 Revival</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$90-110</p>
+                    <p>Oloroso sherry excellence. Worth the premium.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Tamdhu 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$50-65</p>
+                    <p>100% sherry cask matured. Great value sherry bomb.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Benriach 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Versatile Speyside. Good quality at fair price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenallachie 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Sherry-forward Speyside. Excellent independent bottling.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Arran 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Island malt with character. Non-chill filtered quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Talisker 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$55-70</p>
+                    <p>Peppery Skye malt. Classic and fairly priced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Highland Park 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Balanced Orkney malt. Before the Viking marketing ruined it.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Compass Box Great King Street</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Quality blend from independent bottler. Actually worth it.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bank Note 5 Year</h3>
+                    <span class="whiskey-type">Blended Scotch</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Age-stated blend at bargain price. Hidden gem.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Powers Gold Label</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Single pot still Irish at great price. Better than Jameson.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Powers John's Lane</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$60-70</p>
+                    <p>12-year single pot still. Excellent Irish whiskey value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Green Spot</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Single pot still from Mitchell's. Quality Irish whiskey.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Yellow Spot 12</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$90-110</p>
+                    <p>Age-stated pot still with complexity. Worth the premium.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Redbreast 12 Cask Strength</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$80-90</p>
+                    <p>Uncut pot still Irish. Better value than the standard 12.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Method and Madness Single Pot Still</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$60-70</p>
+                    <p>Innovative Irish whiskey. Quality experimentation.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Kilbeggan Single Grain</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Unique Irish grain whiskey. Interesting and affordable.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Tyrconnell 10 Madeira Cask</h3>
+                    <span class="whiskey-type">Irish Whiskey</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Single malt Irish with wine finish. Underrated quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Kilchoman Machir Bay</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Farm distillery Islay. Young but quality peated malt.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Port Charlotte 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$65-80</p>
+                    <p>Heavily peated Bruichladdich. Actually worth the price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Octomore (Various)</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$150-200</p>
+                    <p>Most heavily peated whisky. Expensive but unique experience.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Ardbeg An Oa</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$55-70</p>
+                    <p>Smoother Ardbeg expression. Good gateway peat.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Laphroaig Lore</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$90-110</p>
+                    <p>Rich, complex Laphroaig. Premium expression done right.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Lagavulin 8</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Younger Lagavulin at better price. More vibrant than the 16.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Caol Ila Moch</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Unpeated Caol Ila. Unique and fairly priced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Smokehead</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Young Islay peat at good price. No-age-statement done right.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Finlaggan Cask Strength</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Budget Islay at barrel proof. Incredible value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glen Scotia 15</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$70-85</p>
+                    <p>Campbeltown with age. Underrated distillery.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Longrow Peated</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$70-85</p>
+                    <p>Heavily peated Springbank. Unique Campbeltown peat.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Hazelburn 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$65-80</p>
+                    <p>Triple distilled Springbank. Smooth and complex.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Mortlach 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Meaty Speyside. Unique distillation process.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Benromach Cask Strength</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$70-85</p>
+                    <p>Vintage-dated barrel proof. Traditional quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Tomatin 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Bourbon and sherry cask Highland. Great value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Tomatin 18</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$90-110</p>
+                    <p>Age-stated quality at fair price. Underrated gem.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glengoyne 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Unpeated Highland with sherry. Smooth and approachable.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glengoyne 18</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$100-120</p>
+                    <p>Sherry-matured excellence. Worth the age premium.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Ancnoc 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Highland malt with character. Good value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Old Pulteney 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Coastal Highland with brine. Unique and affordable.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Balblair 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Elegant Highland malt. Underrated quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Aberfeldy 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Honeyed Highland malt. Smooth and fairly priced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Dalwhinnie 15</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$55-70</p>
+                    <p>Gentle Highland malt. One of the better Diageo classics.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Oban 14</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$70-85</p>
+                    <p>Coastal Highland. Overpriced but quality is there.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Edradour 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$55-70</p>
+                    <p>Scotland's smallest distillery. Unique and quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Ballechin 10</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Peated Edradour. Highland peat done well.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenfarclas 12</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Sherry bomb at fair price. Family-owned quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenfarclas 17</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$90-110</p>
+                    <p>Age-stated sherry excellence. Great value for age.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenfarclas 105 Cask Strength</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Barrel proof sherry bomb. Incredible value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Aberlour A'Bunadh</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Cask strength sherry bomb. Batch variation but quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>GlenDronach Cask Strength</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Batch-released sherry excellence. Worth seeking out.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Glenallachie Cask Strength</h3>
+                    <span class="whiskey-type">Single Malt Scotch</span>
+                    <p class="price-range">$70-85</p>
+                    <p>Batch-released quality. Billy Walker knows whisky.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- END WHISKEY SECTION -->
+
+        <!-- RUM SECTION -->
+        <div id="rum-section" class="page" style="display: none;">
+            <nav>
+                <button class="nav-btn gimmick" onclick="showPage('rum-gimmick')">💸 Gimmick Rums</button>
+                <button class="nav-btn true-whiskey" onclick="showPage('rum-true')">⭐ True Rums</button>
+            </nav>
+
+        <!-- GIMMICK RUMS PAGE -->
+        <div id="rum-gimmick" class="page gimmick-page">
+            <div class="page-header gimmick-header">
+                <h2>💸 Gimmick Rums - Overpriced & Overhyped</h2>
+                <p>These rums rely on marketing, celebrity endorsements, and fancy bottles rather than quality</p>
+            </div>
+
+            <div class="whiskey-grid">
+                <div class="whiskey-card">
+                    <h3>Captain Morgan Spiced Rum</h3>
+                    <span class="whiskey-type">Spiced Rum</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Overly sweet, artificial flavoring. More sugar than rum character.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Malibu Coconut Rum</h3>
+                    <span class="whiskey-type">Flavored Rum</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Liqueur masquerading as rum. Barely 21% ABV with artificial coconut.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bacardi Gold</h3>
+                    <span class="whiskey-type">Gold Rum</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Artificial coloring, minimal aging. Mass-produced mediocrity.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bacardi Superior</h3>
+                    <span class="whiskey-type">White Rum</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Filtered to oblivion. No character, just alcohol.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bacardi 8 Year</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Age statement doesn't save it. Still tastes like Bacardi.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Kraken Black Spiced Rum</h3>
+                    <span class="whiskey-type">Spiced Rum</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Gimmicky bottle and monster marketing. Overly sweet and artificial.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Sailor Jerry Spiced Rum</h3>
+                    <span class="whiskey-type">Spiced Rum</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Tattoo marketing and vanilla bomb. More flavoring than rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Don Q Cristal</h3>
+                    <span class="whiskey-type">White Rum</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Bland and forgettable. Nothing special despite the hype.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bumbu Original</h3>
+                    <span class="whiskey-type">Spiced Rum</span>
+                    <p class="price-range">$35-40</p>
+                    <p>Loaded with added sugar. Expensive candy in a fancy bottle.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bumbu XO</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Even more sugar than the original. Overpriced dessert syrup.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Zacapa XO</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Fancy bottle, not worth double the 23. Overpriced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Diplomatico Ambassador</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$200-250</p>
+                    <p>Absurdly overpriced sweetened rum. You're paying for the decanter.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Pyrat XO Reserve</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Gimmicky bottle with wax seal. Overpriced and over-sweetened.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Flor de Caña 18</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Overpriced for what it delivers. Better Nicaraguan rums exist.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Flor de Caña 25</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$120-150</p>
+                    <p>Age doesn't justify the price. Over-oaked and expensive.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Plantation Stiggins' Fancy</h3>
+                    <span class="whiskey-type">Pineapple Rum</span>
+                    <p class="price-range">$35-40</p>
+                    <p>Gimmicky pineapple infusion. Overpriced for flavored rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Mount Gay XO</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Overpriced Barbados rum. The Eclipse is better value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Appleton Estate 21</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$100-120</p>
+                    <p>Good rum, but overpriced. The 12 year is better value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Havana Club Selección de Maestros</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Fancy presentation, mediocre rum. Overpriced Cuban.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Havana Club 15</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Age statement doesn't justify premium. Better Cuban rums exist.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Ron Barceló Imperial</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$30-40</p>
+                    <p>Dominican rum with too much sweetness. Marketing over quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Brugal 1888</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Overpriced Dominican rum. The Añejo is better value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Angostura 1824</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Overpriced Trinidad rum. Better options at this price point.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Angostura 1919</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Decent but overpriced. The 7 year is better value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Pampero Aniversario</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Venezuelan rum with added sugar. Leather pouch is a gimmick.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>El Dorado 21</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$120-150</p>
+                    <p>Way overpriced. Not worth the premium over the 12.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>El Dorado 15</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Overpriced for what it is. The 12 is better value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Chairman's Reserve Forgotten Casks</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Gimmicky "forgotten" story. Overpriced St. Lucian rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Pusser's British Navy Rum</h3>
+                    <span class="whiskey-type">Navy Rum</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Naval history marketing. Mediocre rum with a story.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Pusser's 15 Year</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$60-70</p>
+                    <p>Overpriced for what it delivers. Story doesn't justify cost.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Gosling's Black Seal</h3>
+                    <span class="whiskey-type">Dark Rum</span>
+                    <p class="price-range">$20-25</p>
+                    <p>One-trick pony for Dark 'n' Stormys. Overpriced for mixing rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Myers's Original Dark</h3>
+                    <span class="whiskey-type">Dark Rum</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Artificial coloring and flavoring. Harsh and unpleasant.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Cruzan Single Barrel</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$25-30</p>
+                    <p>"Single barrel" is meaningless here. Mediocre Virgin Islands rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Parce 12 Year</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Colombian rum with celebrity backing. Overpriced and over-sweetened.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Don Papa 10</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Overpriced for what it delivers. Not worth double the regular.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRUE RUMS PAGE -->
+        <div id="rum-true" class="page true-whiskey-page">
+            <div class="page-header true-whiskey-header">
+                <h2>⭐ True Rums - Worth Every Penny</h2>
+                <p>These rums deliver exceptional quality, authenticity, and value</p>
+            </div>
+
+            <div class="whiskey-grid">
+                <div class="whiskey-card">
+                    <h3>Appleton Estate 12 Year</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Excellent Jamaican rum with funk and complexity. Great value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Appleton Estate Signature</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Solid mixing rum with character. Affordable Jamaican quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Smith & Cross</h3>
+                    <span class="whiskey-type">Navy Rum</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Funky Jamaican pot still rum. Essential for tiki cocktails.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Doctor Bird</h3>
+                    <span class="whiskey-type">Jamaican Rum</span>
+                    <p class="price-range">$30-35</p>
+                    <p>High-ester Jamaican funk. Authentic and fairly priced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Hampden Estate 8 Year</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Pure Jamaican pot still excellence. Worth every penny.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Hampden Estate Overproof</h3>
+                    <span class="whiskey-type">Overproof Rum</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Intense Jamaican funk at high proof. Cocktail essential.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Wray & Nephew Overproof</h3>
+                    <span class="whiskey-type">White Overproof</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Jamaican white rum with character. Unbeatable value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Rum-Bar White Overproof</h3>
+                    <span class="whiskey-type">White Overproof</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Pure pot still Jamaican. Authentic and affordable.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Rhum J.M VSOP</h3>
+                    <span class="whiskey-type">Rhum Agricole</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Martinique agricole with grassy character. Quality French Caribbean.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Rhum J.M XO</h3>
+                    <span class="whiskey-type">Rhum Agricole</span>
+                    <p class="price-range">$80-100</p>
+                    <p>Aged agricole excellence. Complex and worth the premium.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Clement VSOP</h3>
+                    <span class="whiskey-type">Rhum Agricole</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Classic Martinique agricole. Great introduction to the style.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Clement XO</h3>
+                    <span class="whiskey-type">Rhum Agricole</span>
+                    <p class="price-range">$90-110</p>
+                    <p>Premium aged agricole. Complex and sophisticated.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Neisson Blanc</h3>
+                    <span class="whiskey-type">Rhum Agricole</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Unaged agricole with terroir. Essential for Ti' Punch.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Neisson Réserve Spéciale</h3>
+                    <span class="whiskey-type">Rhum Agricole</span>
+                    <p class="price-range">$60-75</p>
+                    <p>Aged agricole from small producer. Quality and character.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>La Favorite Blanc</h3>
+                    <span class="whiskey-type">Rhum Agricole</span>
+                    <p class="price-range">$30-40</p>
+                    <p>Traditional Martinique agricole. Authentic and affordable.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Barbancourt 8 Year</h3>
+                    <span class="whiskey-type">Rhum Agricole</span>
+                    <p class="price-range">$30-40</p>
+                    <p>Haitian agricole-style rum. Excellent value and quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Barbancourt 15 Year</h3>
+                    <span class="whiskey-type">Rhum Agricole</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Age-stated Haitian rum. Complex and fairly priced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Foursquare Exceptional Cask Series</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$60-80</p>
+                    <p>No added sugar, age-stated Barbados rum. Benchmark quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Foursquare 2007</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$70-90</p>
+                    <p>Vintage-dated excellence. Pure rum with no additives.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Real McCoy 12 Year</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Foursquare-distilled, no additives. Great value Barbados rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Doorly's 12 Year</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Foursquare-made bargain. Incredible value for age-stated rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Doorly's XO</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Dual cask Barbados rum. Best value in aged rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Mount Gay Black Barrel</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Double cask matured. Good value Barbados rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Mount Gay Eclipse</h3>
+                    <span class="whiskey-type">Gold Rum</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Solid mixing rum with character. Affordable quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Plantation 3 Stars</h3>
+                    <span class="whiskey-type">White Rum</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Blend of Caribbean rums. Great for cocktails.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Plantation Original Dark</h3>
+                    <span class="whiskey-type">Dark Rum</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Overproof dark rum. Excellent for mixing.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Plantation OFTD</h3>
+                    <span class="whiskey-type">Overproof Rum</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Old Fashioned Traditional Dark. Tiki essential.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Probitas White Rum</h3>
+                    <span class="whiskey-type">White Rum</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Foursquare/Hampden blend. Perfect daiquiri rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Denizen Merchant's Reserve</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Blend designed for Mai Tais. Does one thing perfectly.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Hamilton Jamaican Pot Still Black</h3>
+                    <span class="whiskey-type">Jamaican Rum</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Funky Jamaican for cocktails. Authentic and affordable.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Hamilton 86 Demerara</h3>
+                    <span class="whiskey-type">Demerara Rum</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Guyana rum without added sugar. Honest Demerara.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>El Dorado 12 Year</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Despite added sugar, still good value. Unique Demerara stills.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Havana Club 7</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Classic Cuban rum. Great for cocktails and sipping.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Flor de Caña 7 Year</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Nicaraguan rum at fair price. Good value sipper.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Flor de Caña 12 Year</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Age-stated quality. Better value than the 18.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Ron Matusalem Gran Reserva 15</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Dominican rum with character. Good value aged rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Chairman's Reserve Original</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$30-35</p>
+                    <p>St. Lucian rum with pot/column blend. Quality Caribbean rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Chairman's Reserve Spiced</h3>
+                    <span class="whiskey-type">Spiced Rum</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Actually good spiced rum. Real spices, not artificial.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Worthy Park Single Estate Reserve</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Jamaican estate rum. Funky and well-priced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Worthy Park 109</h3>
+                    <span class="whiskey-type">Overproof Rum</span>
+                    <p class="price-range">$30-35</p>
+                    <p>High-proof Jamaican funk. Cocktail powerhouse.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Privateer Navy Yard</h3>
+                    <span class="whiskey-type">American Rum</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Massachusetts rum done right. Quality American craft.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Privateer True American</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Amber rum with character. Craft rum worth the price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Richland Georgia Rum</h3>
+                    <span class="whiskey-type">American Rum</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Single estate Georgia rum. Unique American rum.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Santa Teresa 1796</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Quality Venezuelan rum. Complex and smooth for the price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Don Papa</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$40-50</p>
+                    <p>Filipino rum with good flavor. Quality and enjoyable despite added sugar.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Zacapa 23</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Guatemalan solera rum. Sweet and smooth, good value for the quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Diplomatico Reserva Exclusiva</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Venezuelan rum with great flavor. Sweet but delicious and fairly priced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Plantation XO 20th Anniversary</h3>
+                    <span class="whiskey-type">Aged Rum</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Barbados rum with dosage. Complex and tasty, worth the price.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- END RUM SECTION -->
+
+        <!-- GIN SECTION -->
+        <div id="gin-section" class="page" style="display: none;">
+            <nav>
+                <button class="nav-btn gimmick" onclick="showPage('gin-gimmick')">💸 Gimmick Gins</button>
+                <button class="nav-btn true-whiskey" onclick="showPage('gin-true')">⭐ True Gins</button>
+            </nav>
+
+        <!-- GIMMICK GINS PAGE -->
+        <div id="gin-gimmick" class="page gimmick-page">
+            <div class="page-header gimmick-header">
+                <h2>💸 Gimmick Gins - Overpriced & Overhyped</h2>
+                <p>These gins rely on fancy bottles, celebrity endorsements, and marketing</p>
+            </div>
+
+            <div class="whiskey-grid">
+                <div class="whiskey-card">
+                    <h3>Hendrick's Gin</h3>
+                    <span class="whiskey-type">Scottish Gin</span>
+                    <p class="price-range">$35-40</p>
+                    <p>Cucumber and rose gimmick. Overpriced for what it delivers.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Monkey 47</h3>
+                    <span class="whiskey-type">German Gin</span>
+                    <p class="price-range">$50-60</p>
+                    <p>47 botanicals is overkill. Overpriced and over-complicated.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>The Botanist</h3>
+                    <span class="whiskey-type">Islay Gin</span>
+                    <p class="price-range">$40-45</p>
+                    <p>22 botanicals and fancy bottle. Paying for marketing.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Roku Gin</h3>
+                    <span class="whiskey-type">Japanese Gin</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Japanese gin hype. Decent but overpriced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Nolet's Reserve</h3>
+                    <span class="whiskey-type">Dutch Gin</span>
+                    <p class="price-range">$700-800</p>
+                    <p>Absurdly overpriced gin. No gin is worth this much.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Bombay Sapphire</h3>
+                    <span class="whiskey-type">London Dry Gin</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Blue bottle marketing. Bland and overpriced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Aviation Gin</h3>
+                    <span class="whiskey-type">American Gin</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Ryan Reynolds celebrity gin. Marketing over substance.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Empress 1908</h3>
+                    <span class="whiskey-type">Canadian Gin</span>
+                    <p class="price-range">$35-40</p>
+                    <p>Color-changing gimmick. Instagram gin, not quality gin.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Seagram's Gin</h3>
+                    <span class="whiskey-type">American Gin</span>
+                    <p class="price-range">$15-18</p>
+                    <p>Bottom shelf gin. Harsh and unpleasant.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Gordon's Gin</h3>
+                    <span class="whiskey-type">London Dry Gin</span>
+                    <p class="price-range">$15-18</p>
+                    <p>Watered down to 80 proof. Cheap for a reason.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRUE GINS PAGE -->
+        <div id="gin-true" class="page true-whiskey-page">
+            <div class="page-header true-whiskey-header">
+                <h2>⭐ True Gins - Worth Every Penny</h2>
+                <p>These gins deliver exceptional quality and balanced botanicals</p>
+            </div>
+
+            <div class="whiskey-grid">
+                <div class="whiskey-card">
+                    <h3>Tanqueray London Dry</h3>
+                    <span class="whiskey-type">London Dry Gin</span>
+                    <p class="price-range">$22-28</p>
+                    <p>Classic London Dry. Excellent value and quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Beefeater London Dry</h3>
+                    <span class="whiskey-type">London Dry Gin</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Juniper-forward classic. Best value in London Dry.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Ford's Gin</h3>
+                    <span class="whiskey-type">London Dry Gin</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Bartender's gin. Perfect for cocktails, great value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Plymouth Gin</h3>
+                    <span class="whiskey-type">Plymouth Gin</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Unique protected designation. Smooth and balanced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Hayman's London Dry</h3>
+                    <span class="whiskey-type">London Dry Gin</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Family-owned quality. Traditional and well-priced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Sipsmith London Dry</h3>
+                    <span class="whiskey-type">London Dry Gin</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Craft gin done right. Quality without gimmicks.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Broker's Gin</h3>
+                    <span class="whiskey-type">London Dry Gin</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Quadruple distilled. Excellent value London Dry.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>St. George Terroir</h3>
+                    <span class="whiskey-type">American Gin</span>
+                    <p class="price-range">$35-40</p>
+                    <p>California botanicals. Unique American gin.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Junipero Gin</h3>
+                    <span class="whiskey-type">American Gin</span>
+                    <p class="price-range">$30-35</p>
+                    <p>High-proof juniper bomb. Bold and worth it.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Barr Hill</h3>
+                    <span class="whiskey-type">American Gin</span>
+                    <p class="price-range">$35-40</p>
+                    <p>Honey and juniper. Unique Vermont gin.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- END GIN SECTION -->
+
+        <!-- VODKA SECTION -->
+        <div id="vodka-section" class="page" style="display: none;">
+            <nav>
+                <button class="nav-btn gimmick" onclick="showPage('vodka-gimmick')">💸 Gimmick Vodkas</button>
+                <button class="nav-btn true-whiskey" onclick="showPage('vodka-true')">⭐ True Vodkas</button>
+            </nav>
+
+        <!-- GIMMICK VODKAS PAGE -->
+        <div id="vodka-gimmick" class="page gimmick-page">
+            <div class="page-header gimmick-header">
+                <h2>💸 Gimmick Vodkas - Overpriced & Overhyped</h2>
+                <p>These vodkas rely on celebrity endorsements, fancy bottles, and marketing myths</p>
+            </div>
+
+            <div class="whiskey-grid">
+                <div class="whiskey-card">
+                    <h3>Grey Goose</h3>
+                    <span class="whiskey-type">French Vodka</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Marketing masterpiece, mediocre vodka. You're paying for the brand.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Belvedere</h3>
+                    <span class="whiskey-type">Polish Vodka</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Fancy bottle, overpriced vodka. Not worth the premium.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Cîroc</h3>
+                    <span class="whiskey-type">French Vodka</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Diddy's vodka. Grape-based gimmick with celebrity markup.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Crystal Head</h3>
+                    <span class="whiskey-type">Canadian Vodka</span>
+                    <p class="price-range">$50-60</p>
+                    <p>Dan Aykroyd's skull bottle. Expensive packaging, mediocre vodka.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Absolut Elyx</h3>
+                    <span class="whiskey-type">Swedish Vodka</span>
+                    <p class="price-range">$45-55</p>
+                    <p>Copper still marketing. Not worth double regular Absolut.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Ketel One</h3>
+                    <span class="whiskey-type">Dutch Vodka</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Overpriced for what it is. Marketing over quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Chopin</h3>
+                    <span class="whiskey-type">Polish Vodka</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Potato vodka gimmick. Overpriced Polish vodka.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Beluga Noble</h3>
+                    <span class="whiskey-type">Russian Vodka</span>
+                    <p class="price-range">$35-45</p>
+                    <p>Fancy bottle with leather. Expensive packaging.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Beluga Gold Line</h3>
+                    <span class="whiskey-type">Russian Vodka</span>
+                    <p class="price-range">$150-200</p>
+                    <p>Absurdly overpriced vodka. Gold flakes don't add value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Stolichnaya Elit</h3>
+                    <span class="whiskey-type">Russian Vodka</span>
+                    <p class="price-range">$60-70</p>
+                    <p>Freeze filtration gimmick. Not worth the premium.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Pinnacle Whipped</h3>
+                    <span class="whiskey-type">Flavored Vodka</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Dessert vodka gimmick. Artificial flavoring.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Smirnoff Ice</h3>
+                    <span class="whiskey-type">Malt Beverage</span>
+                    <p class="price-range">$8-10</p>
+                    <p>Not even vodka. Malt liquor with vodka branding.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Skyy Vodka</h3>
+                    <span class="whiskey-type">American Vodka</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Quadruple distilled marketing. Still mediocre.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Burnett's Vodka</h3>
+                    <span class="whiskey-type">American Vodka</span>
+                    <p class="price-range">$10-12</p>
+                    <p>Bottom shelf for a reason. Harsh and unpleasant.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Popov Vodka</h3>
+                    <span class="whiskey-type">American Vodka</span>
+                    <p class="price-range">$8-10</p>
+                    <p>Cheapest vodka. Headache in a bottle.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Svedka</h3>
+                    <span class="whiskey-type">Swedish Vodka</span>
+                    <p class="price-range">$15-18</p>
+                    <p>Swedish marketing, American production. Mediocre.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Pinnacle Vodka</h3>
+                    <span class="whiskey-type">French Vodka</span>
+                    <p class="price-range">$12-15</p>
+                    <p>French label, mediocre vodka. Marketing trick.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>UV Vodka</h3>
+                    <span class="whiskey-type">American Vodka</span>
+                    <p class="price-range">$12-15</p>
+                    <p>Flavored vodka gimmicks. Low quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Three Olives</h3>
+                    <span class="whiskey-type">English Vodka</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Flavored vodka focus. Gimmicky and overpriced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Effen Vodka</h3>
+                    <span class="whiskey-type">Dutch Vodka</span>
+                    <p class="price-range">$25-30</p>
+                    <p>50 Cent's vodka. Celebrity markup on mediocre vodka.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRUE VODKAS PAGE -->
+        <div id="vodka-true" class="page true-whiskey-page">
+            <div class="page-header true-whiskey-header">
+                <h2>⭐ True Vodkas - Worth Every Penny</h2>
+                <p>These vodkas deliver exceptional quality, purity, and value</p>
+            </div>
+
+            <div class="whiskey-grid">
+                <div class="whiskey-card">
+                    <h3>Luksusowa</h3>
+                    <span class="whiskey-type">Polish Vodka</span>
+                    <p class="price-range">$15-20</p>
+                    <p>Potato vodka at bargain price. Excellent value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Sobieski</h3>
+                    <span class="whiskey-type">Polish Vodka</span>
+                    <p class="price-range">$12-15</p>
+                    <p>Rye vodka from Poland. Best value vodka available.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Żubrówka Bison Grass</h3>
+                    <span class="whiskey-type">Polish Vodka</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Unique bison grass flavor. Authentic Polish vodka.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Stolichnaya</h3>
+                    <span class="whiskey-type">Russian Vodka</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Classic Russian vodka. Good quality at fair price.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Russian Standard</h3>
+                    <span class="whiskey-type">Russian Vodka</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Authentic Russian vodka. Great value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Russian Standard Platinum</h3>
+                    <span class="whiskey-type">Russian Vodka</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Premium Russian vodka. Worth the small upgrade.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Absolut Vodka</h3>
+                    <span class="whiskey-type">Swedish Vodka</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Consistent quality. Reliable and well-priced.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Finlandia</h3>
+                    <span class="whiskey-type">Finnish Vodka</span>
+                    <p class="price-range">$18-22</p>
+                    <p>Clean Finnish vodka. Good value Nordic vodka.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Reyka</h3>
+                    <span class="whiskey-type">Icelandic Vodka</span>
+                    <p class="price-range">$25-30</p>
+                    <p>Glacial water and quality. Worth the premium.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Tito's Handmade Vodka</h3>
+                    <span class="whiskey-type">American Vodka</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Corn vodka from Texas. Smooth and affordable.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Prairie Organic Vodka</h3>
+                    <span class="whiskey-type">American Vodka</span>
+                    <p class="price-range">$20-25</p>
+                    <p>Organic corn vodka. Quality American vodka.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Boyd & Blair</h3>
+                    <span class="whiskey-type">American Vodka</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Pennsylvania potato vodka. Craft quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Karlsson's Gold</h3>
+                    <span class="whiskey-type">Swedish Vodka</span>
+                    <p class="price-range">$35-40</p>
+                    <p>Vintage potato vodka. Unique and quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Wyborowa</h3>
+                    <span class="whiskey-type">Polish Vodka</span>
+                    <p class="price-range">$15-18</p>
+                    <p>Classic Polish rye vodka. Excellent value.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Belvedere (when on sale)</h3>
+                    <span class="whiskey-type">Polish Vodka</span>
+                    <p class="price-range">$25-28</p>
+                    <p>At the right price, it's worth it. Quality Polish vodka.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Chopin Rye</h3>
+                    <span class="whiskey-type">Polish Vodka</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Better than potato version. Quality rye vodka.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Hangar 1</h3>
+                    <span class="whiskey-type">American Vodka</span>
+                    <p class="price-range">$30-35</p>
+                    <p>California craft vodka. Quality and unique.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>St. George All Purpose</h3>
+                    <span class="whiskey-type">American Vodka</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Craft vodka with character. Not neutral, but quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Crop Organic</h3>
+                    <span class="whiskey-type">American Vodka</span>
+                    <p class="price-range">$25-30</p>
+                    <p>USDA organic vodka. Clean and quality.</p>
+                </div>
+
+                <div class="whiskey-card">
+                    <h3>Square One Organic</h3>
+                    <span class="whiskey-type">American Vodka</span>
+                    <p class="price-range">$30-35</p>
+                    <p>Organic rye vodka. Quality craft vodka.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- END VODKA SECTION -->
+
+        <footer>
+            <p>🥃 Remember: The best spirit is the one you enjoy, regardless of price or prestige. 🥃</p>
+            <p>This guide reflects value, quality, and honest assessment over marketing hype.</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">Prices are approximate USD and may vary by region and availability.</p>
+        </footer>
+    </div>
+
+    <script>
+        function showHome() {
+            // Hide all sections
+            document.querySelectorAll('#whiskey-section, #rum-section, #gin-section, #vodka-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show home page
+            const homePage = document.getElementById('home');
+            if (homePage) {
+                homePage.style.display = 'flex';
+                homePage.classList.add('active');
+            }
+
+            // Hide back button
+            document.querySelector('.back-home-btn').classList.remove('show');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showSpirit(spiritType) {
+            // Hide home page completely
+            const homePage = document.getElementById('home');
+            if (homePage) {
+                homePage.style.display = 'none';
+                homePage.classList.remove('active');
+            }
+
+            // Hide all sections
+            document.querySelectorAll('#whiskey-section, #rum-section, #gin-section, #vodka-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show selected section
+            const sectionId = spiritType + '-section';
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.style.display = 'block';
+            }
+
+            // Show the gimmick page by default for this spirit
+            const gimmickPageId = spiritType + '-gimmick';
+            showPage(gimmickPageId);
+
+            // Show back button
+            document.querySelector('.back-home-btn').classList.add('show');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showPage(pageId) {
+            // Hide all sub-pages
+            const pages = document.querySelectorAll('.gimmick-page, .true-whiskey-page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show home page by default
+        document.addEventListener('DOMContentLoaded', function() {
+            showHome();
+        });
+    </script>
+</body>
+</html>
+
