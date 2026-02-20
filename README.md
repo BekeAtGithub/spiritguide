@@ -1,6 +1,6 @@
 # 🥃 Spirit Guide
 
-**The Ultimate Liquor Guide - Separating Gimmicks from Genuine Quality**
+**The Ultimate Liquor Guide - Separating Gimmicks from Genuine Quality!**
 
 A comprehensive guide to help you navigate the world of spirits and find bottles that are actually worth your money.
 
