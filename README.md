@@ -14,7 +14,7 @@ A comprehensive guide to help you navigate the world of spirits and find bottles
 
 ## Categories
 
-### Whiskey 🥃
+### Whiskey 
 - 60+ Gimmick Whiskeys (overpriced/overhyped)
 - 60+ True Whiskeys (worth every penny)
 
