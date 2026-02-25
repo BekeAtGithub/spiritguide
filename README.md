@@ -1,10 +1,10 @@
-# 🥃 Spirit Guide
+# Spirit Guide
 
 **The Ultimate Liquor Guide - Separating Gimmicks from Genuine Quality!**
 
 A comprehensive guide to help you navigate the world of spirits and find bottles that are actually worth your money.
 
-## 🌟 Features
+## Features
 
 - **300+ Spirits Reviewed** across 4 categories
 - **Honest Assessments** - No marketing BS, just real value analysis
@@ -12,7 +12,7 @@ A comprehensive guide to help you navigate the world of spirits and find bottles
 - **Easy Navigation** - Quick switching between Gimmick and True spirits
 - **Beautiful Design** - Custom background and smooth animations
 
-## 🍹 Categories
+## Categories
 
 ### Whiskey 🥃
 - 60+ Gimmick Whiskeys (overpriced/overhyped)
